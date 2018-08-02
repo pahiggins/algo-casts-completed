@@ -10,19 +10,32 @@
 
 function chunk(array, size) {
     const chunked = [];
+    let index = 0;
 
-    for (let el of array) {
-        const lastEl = chunked[chunked.length - 1];
-
-        if (!lastEl || lastEl.length === size) {
-            chunked.push([el]);
-        } else {
-            lastEl.push(el);
-        }
+    while (index < array.length) {
+        const chunk = array.slice(index, index + size);
+        chunked.push(chunk);
+        index = index + size;
     }
 
     return chunked;
 }
+
+// function chunk(array, size) {
+//     const chunked = [];
+
+//     for (let el of array) {
+//         const lastEl = chunked[chunked.length - 1];
+
+//         if (!lastEl || lastEl.length === size) {
+//             chunked.push([el]);
+//         } else {
+//             lastEl.push(el);
+//         }
+//     }
+
+//     return chunked;
+// }
 
 const result = chunk([1, 2, 3], 2);
 console.log(result);
