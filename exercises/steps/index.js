@@ -41,13 +41,9 @@ function recursiveSteps(n, row = 0, string = '') {
         return recursiveSteps(n, row + 1);
     }
 
-    if (string.length <= row) {
-        string += '#'
-    } else {
-        string += ' ';
-    }
+    const add = string.length <= row ? '#' : ' ';
 
-    recursiveSteps(n, row, string);
+    recursiveSteps(n, row, string + add);
 }
 
 // const result = steps(5);
