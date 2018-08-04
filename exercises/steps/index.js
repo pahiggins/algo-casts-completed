@@ -17,20 +17,40 @@
 //       '### '
 //       '####'
 
-function steps(n) {
-    for (let row = 0; row < n; row++) {
-        let string = '';
-        for (let col = 0; col < n; col++) {
-            if (col <= row) {
-                string += '#';
-            } else {
-                string += ' ';
-            }
-        }
-        console.log(string);
+// function steps(n) {
+//     for (let row = 0; row < n; row++) {
+//         let string = '';
+//         for (let col = 0; col < n; col++) {
+//             if (col <= row) {
+//                 string += '#';
+//             } else {
+//                 string += ' ';
+//             }
+//         }
+//         console.log(string);
+//     }
+// }
+
+function recursiveSteps(n, row = 0, string = '') {
+    if (n === row) {
+        return;
     }
+
+    if (n === string.length) {
+        console.log(string);
+        return recursiveSteps(n, row + 1);
+    }
+
+    if (string.length <= row) {
+        string += '#'
+    } else {
+        string += ' ';
+    }
+
+    recursiveSteps(n, row, string);
 }
 
-const result = steps(5);
+// const result = steps(5);
+recursiveSteps(5);
 
-module.exports = steps;
+module.exports = recursiveSteps;
