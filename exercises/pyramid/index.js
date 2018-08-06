@@ -14,23 +14,41 @@
 //       ' ### '
 //       '#####'
 
-function pyramid(n) {
-    const midpoint = Math.floor((n * 2 - 1) / 2);
+// function pyramid(n) {
+//     const midpoint = Math.floor((n * 2 - 1) / 2);
 
-    for (let row = 0; row < n; row++) {
-        let string = '';
+//     for (let row = 0; row < n; row++) {
+//         let string = '';
 
-        for (let col = 0; col < (n * 2 - 1); col++) {
-            if (midpoint - row <= col && midpoint + row >= col) {
-                string += '#';
-            } else {
-                string += ' ';
-            }
-        }
-        console.log(string);
+//         for (let col = 0; col < (n * 2 - 1); col++) {
+//             if (midpoint - row <= col && midpoint + row >= col) {
+//                 string += '#';
+//             } else {
+//                 string += ' ';
+//             }
+//         }
+//         console.log(string);
+//     }
+// }
+
+function recursivePyramid(n, row = 0, string = '') {
+    if (n === row) {
+        return;
     }
+
+    if (string.length === 2 * n - 1) {
+        console.log(string);
+        return recursivePyramid(n, row + 1);
+    }
+
+    const midpoint = Math.floor((n * 2 - 1) / 2);
+    const add = midpoint - row <= string.length && midpoint + row >= string.length ? '#' : ' ';
+
+    recursivePyramid(n, row, string + add);
 }
 
-pyramid(4);
+recursivePyramid(5);
 
-module.exports = pyramid;
+// pyramid(4);
+
+module.exports = recursivePyramid;
