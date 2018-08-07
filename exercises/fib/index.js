@@ -9,25 +9,29 @@
 //   fib(4) === 3
 
 // Iterative Solution
-function fib(n) {
-    const result = [0, 1];
+// function fib(n) {
+//     const result = [0, 1];
 
-    for (let i = 2; i <= n; i++) {
-        const a = result[i - 2];
-        const b = result[i - 1];
-        result.push(a + b);
-    }
+//     for (let i = 2; i <= n; i++) {
+//         const a = result[i - 2];
+//         const b = result[i - 1];
+//         result.push(a + b);
+//     }
 
-    console.log(result);
-    return result[n];
-}
+//     console.log(result);
+//     return result[n];
+// }
 
-const res = fib(1);
-console.log(res);
+// const res = fib(1);
+// console.log(res);
 
 // Recursive Solution
 function fibRecursive(n) {
+    if (n < 2) {
+        return n;
+    }
 
+    return fibRecursive(n - 1) + fibRecursive(n - 2);
 }
 
 module.exports = fib;
