@@ -25,6 +25,21 @@
 // const res = fib(1);
 // console.log(res);
 
+function memoize(fn) {
+    const cache = {};
+
+    return function(...args) {
+        if (cache[args]) {
+            return cache[args];
+        }
+
+        const result = fn.apply(this, args);
+        cache[args] = result;
+
+        return result;
+    };
+}
+
 // Recursive Solution
 function fibRecursive(n) {
     if (n < 2) {
@@ -33,5 +48,8 @@ function fibRecursive(n) {
 
     return fibRecursive(n - 1) + fibRecursive(n - 2);
 }
+
+const fib = memoize(fibRecursive);
+fib(10);
 
 module.exports = fib;
