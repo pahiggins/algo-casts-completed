@@ -90,17 +90,31 @@ class LinkedList {
     }
 
     getAt(integer) {
-        if (!this.head) {
-            return null;
-        }
+        // if (!this.head) {
+        //     return null;
+        // }
 
+        // let node = this.head;
+
+        // for (let i = 0; i < integer; i++) {
+        //     node = node.next;
+        // }
+
+        // return node;
+
+        let counter = 0;
         let node = this.head;
 
-        for (let i = 0; i < integer; i++) {
+        while (node) {
+            if (counter === integer) {
+                return node;
+            }
+
+            counter++;
             node = node.next;
         }
 
-        return node;
+        return null;
     }
 
     removeAt(integer) {
@@ -120,6 +134,32 @@ class LinkedList {
         }
 
         return node;
+    }
+
+    insertAt(data, integer) {
+        const node = this.getAt(integer);
+        const previousNode = this.getAt(integer - 1);
+        const newNode = new Node(data);
+
+        if (!this.head) {
+            this.head = newNode;
+            return;
+        }
+
+        if (this.head === node) {
+            this.head = newNode;
+            newNode.next = node;
+            return;
+        }
+
+        if (!node) {
+            const lastNode = this.getLast();
+            lastNode.next = newNode;
+            return;
+        }
+
+        previousNode.next = newNode;
+        newNode.next = node;
     }
 }
 
