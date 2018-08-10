@@ -61,24 +61,65 @@ class LinkedList {
     }
 
     removeLast() {
-        if (this.size() === 0) {
+        if (!this.head) {
             return;
         }
 
-        if (this.size() === 1) {
+        if (!this.head.next) {
             return this.head = null;
         }
 
         let previous = this.head;
         let node = this.head.next;
 
-        while (node) {
-            if (!node.next) {
-                previous.next = null;
-            }
-            previous = previous.next;
+        while (node.next) {
+            previous = node;
             node = node.next;
         }
+        previous.next = null;
+    }
+
+    insertLast(data) {
+        const lastNode = this.getLast();
+
+        if (lastNode) {
+            lastNode.next = new Node(data);
+        } else {
+            this.head = new Node(data);
+        }
+    }
+
+    getAt(integer) {
+        if (!this.head) {
+            return null;
+        }
+
+        let node = this.head;
+
+        for (let i = 0; i < integer; i++) {
+            node = node.next;
+        }
+
+        return node;
+    }
+
+    removeAt(integer) {
+        const node = this.getAt(integer);
+        const previousNode = this.getAt(integer - 1);
+
+        if (!this.head) {
+            return null;
+        }
+
+        if (this.head === node) {
+            return this.head = node.next;
+        }
+
+        if (node) {
+            previousNode.next = node.next;
+        }
+
+        return node;
     }
 }
 
