@@ -19,7 +19,7 @@ function fromLast(list, n) {
         fast = fast.next;
     }
 
-    while (slow.next && fast.next) {
+    while (fast.next) {
         slow = slow.next;
         fast = fast.next;
     }
