@@ -35,7 +35,7 @@ class Tree {
 
         array.push(this.root);
 
-        while (array.length >= 1) {
+        while (array.length) {
             const nextItem = array.shift();
             const nextItemChildren = nextItem.children;
             array.push(...nextItemChildren);
@@ -44,7 +44,16 @@ class Tree {
     }
 
     traverseDF(fn) {
+        const array = [];
 
+        array.push(this.root);
+
+        while (array.length) {
+            const nextItem = array.shift();
+            const nextItemChildren = nextItem.children;
+            array.unshift(...nextItemChildren);
+            fn(nextItem);
+        }
     }
 }
 
